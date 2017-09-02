@@ -6,13 +6,16 @@ export default function game(state = INITIAL_GAME_STATE, action) {
   switch (action.type) {
     case ActionTypes.MOVE_PIECE:
       let { selectedPiece } = state;
+      if (_.isEmpty(selectedPiece)) {
+        return { ...state };
+      }
       let { x, y } = action.payload.position;
       let piecePosition = _.cloneDeep(state.piecePosition);
       let validationFn = Actions[selectedPiece.type];
-      //console.log('selectedPiece',selectedPiece,':',validationFn)
-      let canMove = validationFn(selectedPiece, x, y,piecePosition);
+      console.log('selectedPiece',selectedPiece,':',validationFn)
+      let canMove = validationFn(selectedPiece, x, y, piecePosition);
       //console.log("canMove", canMove);
-      if (canMove) {        
+      if (canMove) {
         _.map(piecePosition, po => {
           if (po.x === selectedPiece.x && po.y === selectedPiece.y) {
             po.x = x;

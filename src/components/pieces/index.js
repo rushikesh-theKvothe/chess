@@ -2,6 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Actions from "../../actions";
+import { DragSource } from "react-dnd";
+
+const knightSource = {
+  beginDrag(props) {
+    props.selectPiece(props.piece)
+    return {};
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  };
+}
 
 class Piece extends Component {
   onPieceSelect(piece, eve) {
@@ -13,11 +29,11 @@ class Piece extends Component {
   }
 
   render() {
-    const { piece } = this.props;
-    return (
+    const { connectDragSource, isDragging, piece } = this.props;
+    return connectDragSource(
       <div
         className="piece-container"
-        onClick={this.onPieceSelect.bind(this, piece)}
+        /* onClick={this.onPieceSelect.bind(this, piece)} */
       >
         <div
           style={{
@@ -34,4 +50,12 @@ Piece.propTypes = {
   piece: PropTypes.object.isRequired
 };
 
-export default connect(null, { ...Actions })(Piece);
+export default connect(null, { ...Actions })(
+  DragSource(
+    props => {
+      return props.piece ? props.piece.type : "";
+    },
+    knightSource,
+    collect
+  )(Piece)
+);

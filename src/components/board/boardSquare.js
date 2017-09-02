@@ -1,11 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { DropTarget } from "react-dnd";
 import Piece from "../pieces";
 import Square from "./square";
 import _ from "lodash";
 import Actions from "../../actions";
+import { ItemTypes } from "../../constants";
 
+const types = _.values(ItemTypes);
+
+const squareTarget = {
+  canDrop(props) {
+    /* let pieceType = props.children.props.piece
+      ? props.children.props.piece.type
+      : "";
+    let fn = Actions[pieceType];
+    if (fn) return fn(props.x, props.y); */
+
+    return true;
+  },
+
+  drop(props) {
+    console.log("Drop", props);
+    //Actions.movePiece(props.x, props.y);
+    props.movePiece({ x: props.x, y: props.y });
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+  };
+}
 class BoardSquare extends Component {
   renderOverlay(color) {
     return (
@@ -50,11 +79,11 @@ class BoardSquare extends Component {
   }
 
   render() {
-    const { x, y } = this.props;
+    const { x, y, connectDropTarget, isOver, canDrop } = this.props;
     const black = (x + y) % 2 === 1;
-    return (
+    return connectDropTarget(
       <div className="square-container">
-        <Square onClick={this.onSquareClick.bind(this)} black={black}>
+        <Square /* onClick={this.onSquareClick.bind(this)}*/ black={black} >
           {this.renderPiece()}
         </Square>
         {/* { this.isSelected() && this.renderOverlay("red") } */}
@@ -74,4 +103,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { ...Actions })(BoardSquare);
+export default connect(mapStateToProps, { ...Actions })(
+  DropTarget(types, squareTarget, collect)(BoardSquare)
+);

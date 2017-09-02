@@ -5,14 +5,12 @@ export default class Square extends Component {
   render() {
     const { black } = this.props;
     const fill = black ? "black" : "white";
-    const stroke = black ? "white" : "black";
-
+    const stroke = black ? "white" : "black";    
     return (
+      /* onClick={this.props.onClick.bind(this)} */
       <div
         className="piece-main-container"
-        style={{ backgroundColor: fill, color: stroke }}
-        onClick={this.props.onClick.bind(this)}
-      >
+        style={{ backgroundColor: fill, color: stroke }}>
         {this.props.children}
       </div>
     );
