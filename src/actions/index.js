@@ -29,12 +29,12 @@ function canMovePawn(movingPiece, toX, toY, boardPosition) {
   });
 
   if (!_.isEmpty(blockingPiece)) {
-    if (blockingPiece[0].type === movingPiece.type) {
+    if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return validPosition && !pieceBlockingMove;
+  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
 }
 
 function canMoveKing(movingPiece, toX, toY, boardPosition) {
@@ -53,12 +53,12 @@ function canMoveKing(movingPiece, toX, toY, boardPosition) {
   });
 
   if (!_.isEmpty(blockingPiece)) {
-    if (blockingPiece[0].type === movingPiece.type) {
+    if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return validPosition && !pieceBlockingMove;
+  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
 }
 
 function canMoveQueen(movingPiece, toX, toY, boardPosition) {
@@ -73,15 +73,14 @@ function canMoveQueen(movingPiece, toX, toY, boardPosition) {
 
   let blockingPiece = _.filter(boardPosition, bpo => {
     return bpo.x === toX && bpo.y === toY;
-  });
-
+  });  
   if (!_.isEmpty(blockingPiece)) {
-    if (blockingPiece[0].type === movingPiece.type) {
+    if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return validPosition && !pieceBlockingMove;
+  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
 }
 
 function canMoveRook(movingPiece, toX, toY, boardPosition) {
@@ -96,12 +95,12 @@ function canMoveRook(movingPiece, toX, toY, boardPosition) {
   });
 
   if (!_.isEmpty(blockingPiece)) {
-    if (blockingPiece[0].type === movingPiece.type) {
+    if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return validPosition && !pieceBlockingMove;
+  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
 }
 
 function canMoveBishop(movingPiece, toX, toY, boardPosition) {
@@ -118,12 +117,12 @@ function canMoveBishop(movingPiece, toX, toY, boardPosition) {
   });
 
   if (!_.isEmpty(blockingPiece)) {
-    if (blockingPiece[0].type === movingPiece.type) {
+    if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return validPosition && !pieceBlockingMove;
+  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
 }
 
 function canMoveKnight(movingPiece, toX, toY, boardPosition) {
@@ -142,12 +141,12 @@ function canMoveKnight(movingPiece, toX, toY, boardPosition) {
   });
 
   if (!_.isEmpty(blockingPiece)) {
-    if (blockingPiece[0].type === movingPiece.type) {
+    if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return validPosition && !pieceBlockingMove;
+  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
 }
 
 function validateBishopMove(dx, dy) {

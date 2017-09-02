@@ -21,8 +21,7 @@ const squareTarget = {
     return true;
   },
 
-  drop(props) {
-    console.log("Drop", props);
+  drop(props) {    
     //Actions.movePiece(props.x, props.y);
     props.movePiece({ x: props.x, y: props.y });
   }
