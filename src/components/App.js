@@ -29,18 +29,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app-container">
-        <div className="top-guidelines-container">
-          <ul>
-            {this.renderTopGuidlines()}
-          </ul>
+      <div className="main-container">
+       {/*  <div className="move-details-container" /> */}
+        <div className="app-container">
+          <div className="top-guidelines-container">
+            <ul>
+              {this.renderTopGuidlines()}
+            </ul>
+          </div>
+          <Board knightPosition={this.props.knightPosition} />
+          <div className="right-guidelines-container ">
+            <ul>
+              {this.renderRightGuidlines()}
+            </ul>
+          </div>
         </div>
-        <Board knightPosition={this.props.knightPosition} />
-        <div className="right-guidelines-container ">
-          <ul>
-            {this.renderRightGuidlines()}
-          </ul>
-        </div>
+        {/* <div className="move-details-container">
+          Move Container
+    </div> */}
       </div>
     );
   }

@@ -32,10 +32,33 @@
 }
 
 /* End of Guidelines */
+/* Moves Container */
+.move-details-container{
+  padding: 10px;
+  width: 16vw;
+  height: 70vw;
+ /*  margin:10px; */
+  float:left;
+  flex-wrap: wrap;
+}
+
+.move-details-container:last-of-type{
+  background: black;
+  color:#ddd
+}
+
+/* End of Moves Container */
+.main-container{
+  width:100%;
+  height: 100%
+}
 
 .app-container{
   height: 700px;
   width: 700px;
+  /* float: left; */
+  padding: 10px;
+  border:1px solid red;
   margin: 2% auto;
   box-sizing: border-box;
 }

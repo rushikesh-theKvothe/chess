@@ -11,25 +11,25 @@ export default function game(state = INITIAL_GAME_STATE, action) {
       }
       let { x, y } = action.payload.position;
       let piecePosition = _.cloneDeep(state.piecePosition);
-      let validationFn = Actions[selectedPiece.type];     
-      let validations = validationFn(selectedPiece, x, y, piecePosition);  
+      let validationFn = Actions[selectedPiece.type];
+      let validations = validationFn(selectedPiece, x, y, piecePosition);
 
       if (validations.canMove) {
-        let blockingPiece ={}
-        if(!_.isEmpty(validations.blockingPiece)){
-          blockingPiece = validations.blockingPiece[0]
-        }        
+        let blockingPiece = {};
+        if (!_.isEmpty(validations.blockingPiece)) {
+          blockingPiece = validations.blockingPiece[0];
+        }
         _.map(piecePosition, po => {
-          if(blockingPiece.x === po.x && blockingPiece.y === po.y){
-            po.x = -1
-            po.y = -1
+          if (blockingPiece.x === po.x && blockingPiece.y === po.y) {
+            po.x = -1;
+            po.y = -1;
           }
-          if (po.x === selectedPiece.x && po.y === selectedPiece.y) {            
+          if (po.x === selectedPiece.x && po.y === selectedPiece.y) {
             po.x = x;
             po.y = y;
           }
         });
-        return { ...state, piecePosition: piecePosition };
+        return { ...state, piecePosition: piecePosition, moveNo: state.moveNo++ };
       }
       return { ...state };
 

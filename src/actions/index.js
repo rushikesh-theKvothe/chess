@@ -17,10 +17,13 @@ function movePiece(position) {
 
 function canMovePawn(movingPiece, toX, toY, boardPosition) {
   let { x, y, color } = movingPiece;
+  let dx = toX - x;
+  let dy = toY - y;
+  console.log(dx, ":", dy);
 
   let validPosition = color === COLORS.WHITE
-    ? toX - x === 0 && toY - y === 1
-    : toX - x === 0 && toY - y === -1;
+    ? dx === 0 && dy === 1
+    : dx === 0 && dy === -1;
 
   let pieceBlockingMove = false;
 
@@ -31,10 +34,18 @@ function canMovePawn(movingPiece, toX, toY, boardPosition) {
   if (!_.isEmpty(blockingPiece)) {
     if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
+    } else {
+      if (Math.abs(dx) === 1 && Math.abs(dy) === 1) {
+        console.log("in 1");
+        validPosition = true;
+      }
     }
   }
 
-  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
+  return {
+    canMove: validPosition && !pieceBlockingMove,
+    blockingPiece: blockingPiece
+  };
 }
 
 function canMoveKing(movingPiece, toX, toY, boardPosition) {
@@ -58,7 +69,10 @@ function canMoveKing(movingPiece, toX, toY, boardPosition) {
     }
   }
 
-  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
+  return {
+    canMove: validPosition && !pieceBlockingMove,
+    blockingPiece: blockingPiece
+  };
 }
 
 function canMoveQueen(movingPiece, toX, toY, boardPosition) {
@@ -73,14 +87,17 @@ function canMoveQueen(movingPiece, toX, toY, boardPosition) {
 
   let blockingPiece = _.filter(boardPosition, bpo => {
     return bpo.x === toX && bpo.y === toY;
-  });  
+  });
   if (!_.isEmpty(blockingPiece)) {
     if (blockingPiece[0].color === movingPiece.color) {
       pieceBlockingMove = true;
     }
   }
 
-  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
+  return {
+    canMove: validPosition && !pieceBlockingMove,
+    blockingPiece: blockingPiece
+  };
 }
 
 function canMoveRook(movingPiece, toX, toY, boardPosition) {
@@ -100,7 +117,10 @@ function canMoveRook(movingPiece, toX, toY, boardPosition) {
     }
   }
 
-  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
+  return {
+    canMove: validPosition && !pieceBlockingMove,
+    blockingPiece: blockingPiece
+  };
 }
 
 function canMoveBishop(movingPiece, toX, toY, boardPosition) {
@@ -122,7 +142,10 @@ function canMoveBishop(movingPiece, toX, toY, boardPosition) {
     }
   }
 
-  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
+  return {
+    canMove: validPosition && !pieceBlockingMove,
+    blockingPiece: blockingPiece
+  };
 }
 
 function canMoveKnight(movingPiece, toX, toY, boardPosition) {
@@ -146,7 +169,10 @@ function canMoveKnight(movingPiece, toX, toY, boardPosition) {
     }
   }
 
-  return {canMove : validPosition && !pieceBlockingMove,blockingPiece:blockingPiece};
+  return {
+    canMove: validPosition && !pieceBlockingMove,
+    blockingPiece: blockingPiece
+  };
 }
 
 function validateBishopMove(dx, dy) {
