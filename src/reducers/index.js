@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { INITIAL_GAME_STATE, ActionTypes } from "../constants";
+import { INITIAL_GAME_STATE, ActionTypes,COLORS } from "../constants";
 import Actions from "../actions";
 
 export default function game(state = INITIAL_GAME_STATE, action) {
@@ -14,7 +14,7 @@ export default function game(state = INITIAL_GAME_STATE, action) {
       let validationFn = Actions[selectedPiece.type];
       let validations = validationFn(selectedPiece, x, y, piecePosition);
 
-      if (validations.canMove) {
+      if (validations.canMove && selectedPiece.color == state.move) {
         let blockingPiece = {};
         if (!_.isEmpty(validations.blockingPiece)) {
           blockingPiece = validations.blockingPiece[0];
@@ -29,7 +29,9 @@ export default function game(state = INITIAL_GAME_STATE, action) {
             po.y = y;
           }
         });
-        return { ...state, piecePosition: piecePosition, moveNo: state.moveNo++ };
+        let whoseMove = selectedPiece.color === COLORS.WHITE ? COLORS.BLACK : COLORS.WHITE
+        let moveNo = state.moveNo + 1 
+        return { ...state, piecePosition: piecePosition, moveNo: moveNo,move: whoseMove };
       }
       return { ...state };
 

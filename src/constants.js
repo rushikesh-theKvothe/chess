@@ -56,7 +56,8 @@ export const INITIAL_GAME_STATE = {
     { x: 7, y: 6, type: ItemTypes.PAWN, color: COLORS.BLACK, icon: "&#9823" }
   ],
   selectedPiece: {},
-  moveNo:0
+  moveNo:0,
+  move:COLORS.WHITE
 };
 
 /* 

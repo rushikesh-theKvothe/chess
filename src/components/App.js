@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // eslint-disable-next-line
 import "./App.css";
 import Board from "./board/board";
-
+import GameInformation from './gameInformation'
 class App extends Component {
   renderRightGuidlines() {
     let items = [];
@@ -30,6 +30,7 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
+      <GameInformation />
        {/*  <div className="move-details-container" /> */}
         <div className="app-container">
           <div className="top-guidelines-container">
@@ -44,6 +45,7 @@ class App extends Component {
             </ul>
           </div>
         </div>
+        
         {/* <div className="move-details-container">
           Move Container
     </div> */}
