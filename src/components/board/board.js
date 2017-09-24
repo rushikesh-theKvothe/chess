@@ -30,7 +30,7 @@ class Board extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state
+    ...state.present
   };
 }
 function mapDispatchToProps() {

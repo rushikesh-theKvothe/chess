@@ -441,6 +441,18 @@ function validateRookMove(toX, toY, x, y) {
   return (toX - x === 0 && toY - y !== 0) || (toX - x !== 0 && toY - y === 0);
 }
 
+function undoMove() {
+  return {
+    type: ActionTypes.UNDO
+  };
+}
+
+function redoMove() {
+  return {
+    type: ActionTypes.REDO
+  };
+}
+
 export default {
   [ItemTypes.KNIGHT]: canMoveKnight,
   [ItemTypes.BISHOP]: canMoveBishop,
@@ -449,5 +461,7 @@ export default {
   [ItemTypes.ROOK]: canMoveRook,
   [ItemTypes.KING]: canMoveKing,
   movePiece,
-  selectPiece
+  selectPiece,
+  undoMove,
+  redoMove
 };

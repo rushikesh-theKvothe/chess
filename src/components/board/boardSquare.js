@@ -98,7 +98,7 @@ BoardSquare.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    piecePosition: state.piecePosition
+    piecePosition: state.present.piecePosition
   };
 }
 

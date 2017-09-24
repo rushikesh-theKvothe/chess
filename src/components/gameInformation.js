@@ -1,13 +1,38 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Actions from "../actions";
 
 class GameInformation extends Component {
   render() {
     return (
       <div className="container gameInfo">
-        Game Information
-        <div>Moves : { this.props.moveNo } </div>
-        <div>Turn : { this.props.move }</div>
+        <h4>Game Information</h4>
+        <div className='infoRow'>
+          <label>Moves :</label>
+           {this.props.moveNo} 
+        </div>
+        <div className='infoRow'>
+          <label>Turn : </label>
+            {this.props.move}
+        </div>
+        <div className='btnDiv'>
+          <input
+            type="button"
+            value="Undo"
+            onClick={() => {
+              this.props.undoMove();
+            }}
+          />
+        </div>
+        <div className='btnDiv'>
+          <input
+            type="button"
+            value="Redo"
+            onClick={() => {
+              this.props.redoMove();
+            }}
+          />
+        </div>
       </div>
     );
   }
@@ -15,8 +40,8 @@ class GameInformation extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state
+    ...state.present
   };
 }
 
-export default connect(mapStateToProps, {})(GameInformation);
+export default connect(mapStateToProps, { ...Actions })(GameInformation);

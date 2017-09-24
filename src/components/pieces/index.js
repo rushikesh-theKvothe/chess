@@ -37,7 +37,7 @@ class Piece extends Component {
       >
         <div
           style={{
-            color: piece && piece.color === "WHITE" ? "orange" : "blue"
+            color: piece && piece.color === "WHITE" ? "#fff" : "#000"
           }}
           dangerouslySetInnerHTML={{ __html: piece ? piece.icon : null }}
         />

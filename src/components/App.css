@@ -3,7 +3,8 @@
   height: 4%;
   width: 100%;
   float: left;
-  background: #fff
+  background: #222;
+  color: orangered
 }
 .top-guidelines-container ul{
   list-style: none; display: inline
@@ -20,7 +21,8 @@
   height: 95%;
   width: 4%;
   float: left;
-  background: #fff
+  background: #222;
+  color: orangered
 }
 .right-guidelines-container ul{
   height: 100%; 
@@ -58,18 +60,18 @@
   width: 700px;
   /* float: left; */
   padding: 10px;
-  border:1px solid red;
+  /* border:1px solid red; */
   margin: 2% auto;
   box-sizing: border-box;
 }
 
 .board-container{
-  width: 95%;
-  height: 95%;
+  width: 93%;
+  height: 93%;
   display: flex;
   float: left;
   flex-wrap: wrap;
-  border: 2px solid black
+  border: 10px solid skyblue;
 }
 
 .boardsquare-container {
@@ -100,8 +102,48 @@
   vertical-align: middle
 }
 
+.whiteSquare{
+  background: #EEDAB6;
+  fill: #D3BC94 !important;
+  stroke: #D3BC94 !important
+}
+
+.blackSquare{
+  background: #445;
+  /* fill: #9F5132 !important;
+  stroke: #9F5132 !important */
+}
 /* Game Info div */
 .gameInfo{
   float: left;
+  color:#FF7B00;
+  border-right:1px solid white;
+  width:250px;
+  min-height: 700px;
+  padding:0px 10px 0px 20px
+}
+
+.infoRow{
+  margin:5px 10px;
+  padding: 10px;
+}
+.infoRow label{
+  font-weight: bold;
+
+}
+
+.btnDiv{
+  float: left;
+  margin: 5px 10px;
+  background: skyblue;  
+}
+
+.btnDiv input[type=button]{
+  background: skyblue;
+  color:white;
+  padding:5px 10px;
+  border:0px !important;
+  border-radius:5px;
+  cursor: pointer
 }
 /* End of Game Info Div */

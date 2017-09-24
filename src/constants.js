@@ -9,7 +9,9 @@ export const ItemTypes = {
 
 export const ActionTypes = {
   MOVE_PIECE: "MOVE_PIECE",
-  SELECT_PIECE: "SELECT_PIECE"
+  SELECT_PIECE: "SELECT_PIECE",
+  UNDO: "UNDO",
+  REDO: "REDO"
 };
 
 export const COLORS = {
@@ -56,8 +58,8 @@ export const INITIAL_GAME_STATE = {
     { x: 7, y: 6, type: ItemTypes.PAWN, color: COLORS.BLACK, icon: "&#9823" }
   ],
   selectedPiece: {},
-  moveNo:0,
-  move:COLORS.WHITE
+  moveNo: 0,
+  move: COLORS.WHITE
 };
 
 /* 
